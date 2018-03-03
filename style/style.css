@@ -17,7 +17,7 @@ h2 {
 
 
 body {
-    background-image: url(/Img/bg.jpg);
+    background-image: url(/Img/bg2.jpeg);
     background-size: cover;
     display: flex;
     justify-content: center;
@@ -108,12 +108,11 @@ body {
     display: inline-flex;
     justify-content: center;
     align-items: center;
-    width: 4rem;
+    width: 4.5rem;
     height: 4rem;
-    border-radius: 50%;
-    background: #fff;
     color: #333;
-    border: 1px solid #ddd;
+    background-image: url(/Img/life.png);
+    background-size: cover;
 }
 
 button.button,
@@ -136,4 +135,11 @@ input[type=submit].button {
 .lose {
     position: absolute;
     top: 3%;
+}
+
+select {
+    background-color: transparent;
+    border: none;
+    color: blue;
+    font-size: 3rem;
 }

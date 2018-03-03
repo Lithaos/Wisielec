@@ -1,3 +1,4 @@
+var test = document.querySelector('select').value;
 const win = document.querySelector('.win');
 const lose = document.querySelector('.lose');
 var polskiFilm = [ //hasła z których losujemy
@@ -58,7 +59,7 @@ const game = {
     elemSentence: document.querySelector('.word'), //element z hasłem do zgadnięcia
     elemAttempts: document.querySelector('.attempts'), //element z liczba prob
     elemLetters: document.querySelector('.letters'), //lista z literkami do klikania
-    sentences: raperzy,
+    sentences: polskiFilm,
     generateLetterButtons: function () {
         const alphabet = ['a', 'ą', 'b', 'c', 'ć', 'd', 'e', 'ę', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'ł', 'm', 'n', 'ń', 'o', 'ó', 'p', 'q', 'r', 's', 'ś', 't', 'u', 'v', 'w', 'x', 'y', 'z', 'ź', 'ż'];
 
@@ -71,9 +72,6 @@ const game = {
             this.elemLetters.appendChild(button);
         }.bind(this));
     },
-
-
-
     bindEvents: function () {
         this.elemLetters.addEventListener('click', function (e) {
             if (e.target.nodeName.toUpperCase() === "BUTTON" && e.target.classList.contains('letter')) {
@@ -83,7 +81,6 @@ const game = {
             }
         }.bind(this));
     },
-
     enableLetters: function () {
         //pobieramy litery i robimy po nich pętlę włączając je
         const letters = this.elemLetters.querySelectorAll('.letter');
@@ -91,7 +88,6 @@ const game = {
             letter.disabled = false;
         });
     },
-
     disableLetters: function () {
         //pobieramy litery i robimy po nich pętlę wyłączając je
         const letters = this.elemLetters.querySelectorAll('.letter');
@@ -154,7 +150,6 @@ const game = {
         lose.style.display = "block";
         this.disableLetters();
     },
-
     gameComplete: function () {
         alert('Udało ci się zgadnąć hasło :)');
         win.style.display = "block";
@@ -165,17 +160,21 @@ const game = {
         this.bindEvents();
         this.disableLetters(); //przy stworzeniu planszy wyłączamy litery
     },
-
     startGame: function () {
         win.style.display = "none";
         lose.style.display = "none";
+        test = document.querySelector('select').value;
+        if (test == 'pf')
+            test = polskiFilm;
+        else
+            test = raperzy;
+        game.sentences = test;
         this.attempts = 5, //ile prób zostało dla aktualnej gry
             this.randomSentence(); //losujemy hasło do zgadnięcia
         this.showAttempts(); //pokazuje liczbę prób
         this.enableLetters(); //włączamy litery
     }
 };
-
 win.style.display = "none";
 lose.style.display = "none";
 game.initBoard();
